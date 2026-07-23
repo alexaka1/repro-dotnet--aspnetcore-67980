@@ -1,0 +1,25 @@
+@page "/crash"
+@rendermode InteractiveAuto
+@using SilentActivation.Client
+@inject IGreetingService Greeting
+
+<PageTitle>Crash</PageTitle>
+
+<h1>Crash</h1>
+
+<p>
+    This page injects <code>IGreetingService</code>: the server registration works, the client
+    registration throws. When activation runs on WebAssembly, the fault is silently discarded
+    and this page stays a dead prerender.
+</p>
+
+<p role="status">Renderer: <strong>@RendererInfo.Name</strong> — interactive: <strong>@RendererInfo.IsInteractive</strong></p>
+
+<p>Service says: @Greeting.Greet()</p>
+
+<p role="status">Current count: @_count</p>
+<button class="btn btn-primary" @onclick="() => _count++">Click me</button>
+
+@code {
+    private int _count;
+}

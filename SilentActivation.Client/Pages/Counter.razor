@@ -1,0 +1,22 @@
+﻿@page "/counter"
+@rendermode InteractiveAuto
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+@* Added for the repro: shows which runtime Auto picked, so you can tell when WASM has taken over. *@
+<p role="status">Renderer: <strong>@RendererInfo.Name</strong> — interactive: <strong>@RendererInfo.IsInteractive</strong></p>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
